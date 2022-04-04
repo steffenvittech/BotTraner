@@ -2,8 +2,8 @@ import numpy as np
 import tensorflow as tf
 import tensorflow.keras as keras
 from tensorflow.keras.optimizers import Adam
-from buffer import ReplayBuffer
-from networks import ActorNetwork, CriticNetwork
+from agent.buffer import ReplayBuffer
+from agent.networks import ActorNetwork, CriticNetwork
 
 
 class Agent:
@@ -79,7 +79,7 @@ class Agent:
         mu_prime = tf.clip_by_value(mu_prime, self.min_action, self.max_action)
         self.time_step += 1
 
-        return mu_prime
+        return mu_prime[0]
 
     def remember(self, state, action, reward, new_state, done):
         self.memory.store_transition(state, action, reward, new_state, done)

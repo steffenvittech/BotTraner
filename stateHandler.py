@@ -1,12 +1,9 @@
-
-
 import psycopg2
-
 from sklearn.preprocessing import StandardScaler
 
 
-class state():
-    def __init__(self, state_leng=900):
+class Statehandler():
+    def __init__(self, state_leng=120):
         self.conn = psycopg2.connect(
             host="mypostgres",
             port=5432,
@@ -40,14 +37,14 @@ class state():
         return self.scaler.fit_transform(self.state)
 
 
-    def newstate(self):
+    def newstate(self, orderplace, profit, ):
         self.state.pop()
         data=[]
         for i in self.dataresive():
             for j in i:
                 data.append(j)
-        data.append(0)
-        data.append(0)
+        data.append(orderplace)
+        data.append(profit)
         data.append(0)
         self.state.append(data)
         return self.preeprocessor()
