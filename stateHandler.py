@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler
 class state():
     def __init__(self, state_leng=900):
         self.conn = psycopg2.connect(
-            host="marsternode",
+            host="mypostgres",
             port=5432,
             database="tradingdb",
             user="vitten",
